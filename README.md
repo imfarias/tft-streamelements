@@ -11,3 +11,9 @@ Developed with Node.js to Djoko (Thiago Maia) to give the TFT Ranking at livestr
 
     !command add elotft $(urlfetch https://tft-streamelements.herokuapp.com/?name=Arcantinho&region=br) 
 
+
+### Supported Regions:
+
+    br = Brazil
+    na1 = NA
+    COMING SOON MORE REGIONS
