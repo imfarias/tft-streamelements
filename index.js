@@ -43,20 +43,21 @@ function onRequest(request, response) {
         
         const data = JSON.parse(json);
 
-        if(eloTranslateListByRegion[query.region]) {
-            ranking = `${eloTranslateListByRegion[query.region][data.player_info.tier]}`;
-        } else {
-            ranking = data.player_info.tier;
-        }
+        ranking = eloTranslateListByRegion[query.region]
+            ? `${eloTranslateListByRegion[query.region][data.player_info.tier]}`
+            : data.player_info.tier;
+            
+        ranking = ranking.charAt(0).toUpperCase() + ranking.slice(1).toLowerCase();
         
         if(!['MASTER','GRANDMASTER','CHALLENGER'].includes(data.player_info.tier)) {
-            ranking += ` - ${data.player_info.rank}`;
+            ranking += ` ${data.player_info.rank}`;
         }
     
-        ranking += ` - ${data.player_info.leaguePoints} PDL`;
+        ranking += ` (${data.player_info.leaguePoints} LP)`;
 
         response.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
         response.write(ranking);
         response.end();
     })();
+
 }
