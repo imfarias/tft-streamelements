@@ -43,9 +43,7 @@ function onRequest(request, response) {
         
         const data = JSON.parse(json);
 
-        ranking = eloTranslateListByRegion[query.region]
-            ? `${eloTranslateListByRegion[query.region][data.player_info.tier]}`
-            : data.player_info.tier;
+        ranking = data.player_info;
             
         ranking = ranking.charAt(0).toUpperCase() + ranking.slice(1).toLowerCase();
         
