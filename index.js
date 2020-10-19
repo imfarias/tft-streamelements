@@ -9,20 +9,6 @@ function onRequest(request, response) {
     const url_parts = url.parse(request.url, true);
     const query = url_parts.query;
 
-    eloTranslateListByRegion = {
-        'br' : {
-            'IRON': 'FERRO',
-            'BRONZE': 'BRONZE',
-            'SILVER': 'PRATA',
-            'GOLD': 'OURO',
-            'PLATINUM': 'PLATINA',
-            'DIAMOND': 'DIAMANTE',
-            'MASTER': 'MESTRE',
-            'GRANDMASTER': 'GRÃO-MESTRE',
-            'CHALLENGER': 'DESAFIANTE'
-        }
-    }
-
     if(
         !query
         || !query.name
@@ -43,7 +29,7 @@ function onRequest(request, response) {
         
         const data = JSON.parse(json);
 
-        ranking = data.player_info;
+        ranking = data.player_info.tier;
             
         ranking = ranking.charAt(0).toUpperCase() + ranking.slice(1).toLowerCase();
         
